@@ -1,0 +1,22 @@
+请为给定前提 P 命名一条"推翻 P"的域外方向。
+
+【TASK】
+{{TASK}}
+
+【INITIAL_FRAME】
+{{INITIAL_FRAME}}
+
+【PREMISE】
+{{PREMISE}}
+
+【TRACE】
+{{TRACE}}
+
+【FINAL_ANSWER】
+{{FINAL_ANSWER}}
+
+【VIOLATION_QUOTE】
+（trace 中违背 P 的那一段逐字片段；若没有定位到违背点，此处为空）
+{{VIOLATION_QUOTE}}
+
+输出要求见 System 指令。只输出 JSON。

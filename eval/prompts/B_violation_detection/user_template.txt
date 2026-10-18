@@ -1,0 +1,18 @@
+请判断本次执行是否按照给定的前提 P 行事。
+
+【TASK】
+{{TASK}}
+
+【INITIAL_FRAME】
+{{INITIAL_FRAME}}
+
+【PREMISE】
+{{PREMISE}}
+
+【TRACE】
+{{TRACE}}
+
+【FINAL_ANSWER】
+{{FINAL_ANSWER}}
+
+输出要求见 System 指令。只输出 JSON。

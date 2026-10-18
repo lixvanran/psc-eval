@@ -1,0 +1,15 @@
+__pycache__/
+*.pyc
+*.zip
+# 渲染产物（可由 render_prompts.py 重生成）
+run/prompts/
+run/prompts_openbook/
+# 作废批次（保留说明于 SPEC-DECISIONS）
+run/preds_v1_superseded/
+run/preds_v2_superseded/
+# 执行体临时目录（agent 私有）
+run/*/_parts*/
+run/*/_parts_*/
+run/work/
+# 盲评复核材料（可由 make_review_materials.py 重生成）
+run/review/materials/

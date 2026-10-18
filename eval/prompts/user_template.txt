@@ -1,0 +1,30 @@
+请按规格抽取本次任务的域外方向。
+
+【TASK】
+{{TASK}}
+
+【INITIAL_FRAME】
+{{INITIAL_FRAME}}
+
+【TRACE】
+{{TRACE}}
+
+【FINAL_ANSWER】
+{{FINAL_ANSWER}}
+
+【检查清单】
+输出前逐项自查：
+1. 每条 in_frame=false 的方向，其 in_frame_reason 是否指向了 initial_frame 的具体措辞？是否命中了七类逃逸之一？
+2. 每条 status ≠ not_generated 的方向，evidence_quote 是否能在上面 TRACE 或 FINAL_ANSWER 里逐字找到？是否是一段连续文本？
+3. 每条 status = not_generated 的方向，evidence_quote 是否为空字符串？
+4. 有没有把「换个说法」「更详细的表述」「域内子情形」误算成域外？
+5. 每条 decision_effect 是 conclusion_flip / option_added 的方向，是否真的改变了结论或新增了可操作选项？
+   排序变化请填 ranking_only，不要一律填 conclusion_flip，也不要一律填 none。
+6. directions 条数是否 ≤ 8？
+7. initial_frame 是否足以建 FRAME 清单？若不足，frame_ambiguous 是否已置为 true，且 frame_ambiguity_note 写清了缺什么？
+8. 输出是否只有一个 JSON 对象，没有多余文字？
+9. 每条 status 是否按「先看最终答案、再回看中间段」的顺序判的？
+   最终答案里提到它了吗？提到了看是「作为选项/推荐/结论」还是「被排除/否决/推迟」；
+   没提到看中间段是「被否决」还是「保留过」，还是「全文没出现」。
+
+只输出 JSON。

@@ -1,0 +1,9 @@
+请识别本题初始框架的候选集合所依赖的隐含前提。
+
+【TASK】
+{{TASK}}
+
+【INITIAL_FRAME】
+{{INITIAL_FRAME}}
+
+输出要求见 System 指令。只输出 JSON。

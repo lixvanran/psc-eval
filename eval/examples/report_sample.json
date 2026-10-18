@@ -1,0 +1,1909 @@
+{
+  "meta": {
+    "schema_version": 2,
+    "upper_bound_reference": false,
+    "gold_path": "examples/gold_sample.jsonl",
+    "pred_path": "examples/pred_sample.jsonl",
+    "matcher": "jaccard>=0.34",
+    "include_miss_detection": false,
+    "lexicon": {
+      "rejection": [
+        "否决",
+        "不采纳",
+        "不执行",
+        "不列入",
+        "排除",
+        "暂不推进",
+        "不建议",
+        "不推进"
+      ],
+      "retention": [
+        "保留",
+        "采用",
+        "纳入",
+        "建议采用"
+      ]
+    },
+    "n_gold_items": 3,
+    "n_pred_items": 3,
+    "unmatched_pred_ids": [],
+    "spec": "SPEC-DECISIONS-v1.md"
+  },
+  "lexical_baseline": {
+    "f1": 0.5749,
+    "p": null,
+    "r": null,
+    "status_accuracy": 0.5,
+    "best_variant": "词法基线（主表口径，V1）",
+    "local_max_f1": 0.0,
+    "local_max_variant": "wide|full_trace",
+    "gate_basis_kind": "end_to_end",
+    "end_to_end_available": true,
+    "external_baselines": [
+      {
+        "name": "词法基线（主表口径，V1）",
+        "source": "baseline_main_caliber.json",
+        "caliber": "main_table（not_generated 不计入主表）",
+        "caliber_kind": "end_to_end",
+        "mode": "closed",
+        "f1": 0.5749,
+        "all_directions_caliber_f1": null,
+        "recommended_gate_f1": 0.6509,
+        "same_threshold_f1": 0.5509,
+        "same_threshold_params": {
+          "variant": "V1",
+          "oof_thr": 0.15,
+          "stance_thr": 0.3,
+          "match_thr": 0.34
+        },
+        "max_over_thresholds_f1": 0.5749,
+        "strong_pass_line_f1": 0.6749,
+        "gate_point_params": {
+          "variant": "V1",
+          "oof_thr": 0.15,
+          "stance_thr": 0.3,
+          "match_thr": 0.2
+        },
+        "sensitivity_curve": [
+          {
+            "match_thr": 0.2,
+            "baseline_f1": 0.5749,
+            "precision": 0.4248,
+            "recall": 0.8889
+          },
+          {
+            "match_thr": 0.25,
+            "baseline_f1": 0.5749,
+            "precision": 0.4248,
+            "recall": 0.8889
+          },
+          {
+            "match_thr": 0.3,
+            "baseline_f1": 0.5749,
+            "precision": 0.4248,
+            "recall": 0.8889
+          },
+          {
+            "match_thr": 0.34,
+            "baseline_f1": 0.5509,
+            "precision": 0.4071,
+            "recall": 0.8519
+          },
+          {
+            "match_thr": 0.35,
+            "baseline_f1": 0.5509,
+            "precision": 0.4071,
+            "recall": 0.8519
+          },
+          {
+            "match_thr": 0.4,
+            "baseline_f1": 0.515,
+            "precision": 0.3805,
+            "recall": 0.7963
+          },
+          {
+            "match_thr": 0.45,
+            "baseline_f1": 0.479,
+            "precision": 0.354,
+            "recall": 0.7407
+          },
+          {
+            "match_thr": 0.5,
+            "baseline_f1": 0.479,
+            "precision": 0.354,
+            "recall": 0.7407
+          },
+          {
+            "match_thr": 0.55,
+            "baseline_f1": 0.4431,
+            "precision": 0.3274,
+            "recall": 0.6852
+          },
+          {
+            "match_thr": 0.6,
+            "baseline_f1": 0.3537,
+            "precision": 0.2636,
+            "recall": 0.537
+          }
+        ],
+        "pool_caliber": "cleared",
+        "pool_caliber_ok": true,
+        "note": "**主表口径**，与抽取器的主表 F1 同口径 —— 门槛必须用这一份。原始扫描表的 F1 是含 miss detection 口径，不能用于门槛。⑳-b：门槛比较是**同点比较** —— 抽取器必须在取得该基准的**同一个匹配阈值**上被评分。"
+      }
+    ],
+    "variants": {
+      "narrow|evidence_quote": {
+        "f1": 0.0,
+        "p": 0.0,
+        "r": 0.0,
+        "status_accuracy": 0.5,
+        "lexicon": "narrow",
+        "corpus": "evidence_quote"
+      },
+      "narrow|full_trace": {
+        "f1": 0.0,
+        "p": 0.0,
+        "r": 0.0,
+        "status_accuracy": 0.5,
+        "lexicon": "narrow",
+        "corpus": "full_trace"
+      },
+      "narrow|final_answer": {
+        "f1": 0.0,
+        "p": 0.0,
+        "r": 0.0,
+        "status_accuracy": 0.5,
+        "lexicon": "narrow",
+        "corpus": "final_answer"
+      },
+      "wide|evidence_quote": {
+        "f1": 0.0,
+        "p": 0.0,
+        "r": 0.0,
+        "status_accuracy": 0.5,
+        "lexicon": "wide",
+        "corpus": "evidence_quote"
+      },
+      "wide|full_trace": {
+        "f1": 0.0,
+        "p": 0.0,
+        "r": 0.0,
+        "status_accuracy": 0.5,
+        "lexicon": "wide",
+        "corpus": "full_trace"
+      },
+      "wide|final_answer": {
+        "f1": 0.0,
+        "p": 0.0,
+        "r": 0.0,
+        "status_accuracy": 0.5,
+        "lexicon": "wide",
+        "corpus": "final_answer"
+      }
+    },
+    "f1_range": [
+      0.0,
+      0.0
+    ],
+    "note": "6 个实现变体（3 语料 × 宽/窄词表）全报；门槛基准取最高 F1 —— 门槛的作用是「证明尺子学到了语义」，那就必须打败最努力的词法匹配器。"
+  },
+  "true_increment": {
+    "f1": 0.0918,
+    "f1_vs_end_to_end": 0.0918,
+    "status_accuracy": 0.5,
+    "baseline_best_f1": 0.5749,
+    "baseline_best_variant": "词法基线（主表口径，V1）",
+    "statement": "真实增量 = 抽取器 F1 − 词法基线最高 F1 = 0.09（PSC-Eval 相对于关键词匹配基线的真实语义增量）",
+    "statement_vs_end_to_end": "真实增量(vs 端到端闭卷基线 0.5749) = 抽取器 F1 − 0.5749 = 0.09（M2 固定门槛口径）",
+    "required_extractor_f1": 0.6749
+  },
+  "threshold_sweep": null,
+  "dual_open_closed": null,
+  "summary": {
+    "schema_version": 2,
+    "n_items": 3,
+    "n_gold_out_of_frame": 4,
+    "n_gold_in_frame_traps": 2,
+    "n_pred_out_of_frame": 6,
+    "main": {
+      "title": "方向判定主表（不含 miss detection）",
+      "precision": 0.5,
+      "recall": 1.0,
+      "f1": 0.6667,
+      "macro_f1": 0.5556,
+      "tp": 2,
+      "fp": 2,
+      "fn": 0,
+      "scope": "只统计 realized / selection_failure / expression_failure 三类",
+      "note": "not_generated 不计入本表；漏判情况见 miss_detection 表。"
+    },
+    "miss_detection": {
+      "title": "miss detection（单独统计）",
+      "miss_detection_recall": 1.0,
+      "miss_detection_precision": 1.0,
+      "hit": 2,
+      "missed": 0,
+      "spurious_miss_count": 0,
+      "miss_detection_recall_author_only": null,
+      "author_only_hit": 0,
+      "author_only_missed": 0,
+      "author_only_note": "expected_source = gold_author 的漏判条目不计入主召回（分母不能是标注者的领域知识），单列于此。这两条正是「什么算域外」最难的部分。",
+      "disclaimer": "miss_detection_recall 是下界，不是覆盖率：它只能命中金标已枚举的关键漏判方向，无法反映真实漏判总量。同理，miss_detection_precision 也不能当真正的精确率 —— 金标的漏判清单本身不完整，被记为『误报』的方向可能只是没被枚举到。"
+    },
+    "precision": 0.5,
+    "recall": 1.0,
+    "f1": 0.6667,
+    "macro_f1": 0.5556,
+    "tp": 2,
+    "fp": 2,
+    "fn": 0,
+    "status_accuracy": 1.0,
+    "status_checked": 4,
+    "status_accuracy_strict": 1.0,
+    "status_decidable_checked": 4,
+    "status_undecidable_count": 0,
+    "status_undecidable_rate": 0.0,
+    "status_confusion": {
+      "realized": {
+        "realized": 0,
+        "expression_failure": 0,
+        "selection_failure": 0,
+        "not_generated": 0
+      },
+      "expression_failure": {
+        "realized": 0,
+        "expression_failure": 0,
+        "selection_failure": 0,
+        "not_generated": 0
+      },
+      "selection_failure": {
+        "realized": 0,
+        "expression_failure": 0,
+        "selection_failure": 2,
+        "not_generated": 0
+      },
+      "not_generated": {
+        "realized": 0,
+        "expression_failure": 0,
+        "selection_failure": 0,
+        "not_generated": 2
+      }
+    },
+    "per_status": {
+      "realized": {
+        "precision": null,
+        "recall": null,
+        "f1": null,
+        "support": 0
+      },
+      "expression_failure": {
+        "precision": null,
+        "recall": null,
+        "f1": null,
+        "support": 0
+      },
+      "selection_failure": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0,
+        "support": 2
+      },
+      "not_generated": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0,
+        "support": 2
+      }
+    },
+    "status_agreement_rate": 1.0,
+    "status_agreement_strict_rate": 1.0,
+    "ambiguous_status_items": 0,
+    "selection_expression_separability": 1.0,
+    "selection_expression_checked": 2,
+    "selection_expression_separability_adjudicated": null,
+    "selection_expression_adjudicated_checked": 0,
+    "decision_effect_agreement": 0.75,
+    "decision_effect_exact_agreement": 0.75,
+    "decision_effect_checked": 4,
+    "per_effect": {
+      "conclusion_flip": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0,
+        "support": 2
+      },
+      "option_added": {
+        "precision": 1.0,
+        "recall": 0.5,
+        "f1": 0.6667,
+        "support": 2
+      },
+      "ranking_only": {
+        "precision": 0.0,
+        "recall": null,
+        "f1": null,
+        "support": 0
+      },
+      "additive_only": {
+        "precision": null,
+        "recall": null,
+        "f1": null,
+        "support": 0
+      },
+      "none": {
+        "precision": null,
+        "recall": null,
+        "f1": null,
+        "support": 0
+      }
+    },
+    "weak_effect_count": 1,
+    "would_change_decision_accuracy": 0.75,
+    "quote_grounding": {
+      "checked": 6,
+      "exact": 4,
+      "whitespace": 0,
+      "empty": 2,
+      "ungrounded": 0,
+      "required": 4,
+      "required_grounded": 4,
+      "not_generated_with_quote": 0
+    },
+    "quote_grounding_rate": 1.0,
+    "gold_evidence_fragments": 2,
+    "gold_evidence_grounded": 2,
+    "gold_evidence_stats": {
+      "fragments": 2,
+      "exact": 2,
+      "punct": 0,
+      "ungrounded": 0
+    },
+    "gold_evidence_grounding_rate": 1.0,
+    "frame_schema": {
+      "conforming": 2,
+      "non_conforming": 1,
+      "non_conforming_ids": [
+        "psc-003"
+      ],
+      "note": "non_conforming 的条目不得与 conforming 数据并列排名（裁决 ④）"
+    },
+    "gold_mode": "closed_book",
+    "openbook_item_ids": [],
+    "frame_note_leaks": [],
+    "m2_gate": {
+      "gold_evidence_ungrounded_rate": 0.0,
+      "gold_evidence_gate_pass": true,
+      "gold_evidence_fragments": 2,
+      "gold_evidence_extraction_failed": 0,
+      "gold_evidence_skipped_not_generated": 2,
+      "gold_miss_all_key": true,
+      "gold_miss_total": 2,
+      "gold_miss_key_count": 2,
+      "gold_uses_v2_effect": true,
+      "gold_legacy_effect_count": 0,
+      "all_frames_conforming": false,
+      "non_conforming_ids": [
+        "psc-003"
+      ],
+      "gold_mode": "closed_book",
+      "gold_openbook_items": 0,
+      "gold_closed_book": true,
+      "frame_note_leaks": [],
+      "frame_note_leak_free": true,
+      "frame_note_assertion_effective": true,
+      "true_increment_f1": 0.0918,
+      "true_increment_f1_vs_end_to_end": 0.0918,
+      "end_to_end_closed_f1": 0.5749,
+      "required_extractor_f1": 0.6749,
+      "gate_point_baseline_f1": 0.5749,
+      "gate_point_params": {
+        "variant": "V1",
+        "oof_thr": 0.15,
+        "stance_thr": 0.3,
+        "match_thr": 0.2
+      },
+      "same_point_comparison": "抽取器必须在取得门槛基准的**同一个匹配阈值**上被评分；禁止抽取器在多阈值上取最优再与门槛比。",
+      "upper_alarm": false,
+      "upper_alarm_threshold": 0.7664,
+      "upper_alarm_note": "闭卷抽取器 F1 > 开卷天花板（最强词法+泄漏）时触发人工检查：金标泄漏？过拟合？金标有偏？—— **不是通过条件，是异常信号**。",
+      "frame_note_checked": 1,
+      "frame_note_assertion_vacuous": false,
+      "frame_note_coverage_note": "frame_note 断言实际检查到的字段数。**为 0 说明这条断言没有对象可查，处于真空状态**（恒真通过）——「检查到 0 个」和「检查到 30 个且都没泄漏」在报告里长得一模一样，必须分开看。这与「只审匹配上的方向」是同一族 bug。",
+      "f1_at_gate_point": 0.6667,
+      "gate_point_match_thr": 0.25,
+      "true_increment_gate_pass": false,
+      "true_increment_gate_pass_strict_max_basis": false,
+      "true_increment_min": 0.1,
+      "true_increment_gate_basis": "词法基线（主表口径，V1）",
+      "true_increment_gate_basis_kind": "end_to_end",
+      "end_to_end_baseline_supplied": true,
+      "pool_inconsistent_baselines": [],
+      "open_book_baselines": [],
+      "gate_basis_mode": "closed",
+      "audit_coverage": 1.0,
+      "audit_coverage_checked": 4,
+      "audit_coverage_total": 4,
+      "audit_coverage_pass": true,
+      "audit_coverage_detail": {
+        "status_invalid": 0,
+        "effect_missing": 0,
+        "legacy_effect": 0,
+        "evidence_unverifiable": 0,
+        "expected_source_invalid": 0
+      },
+      "violations_count": 0
+    },
+    "baseline_number_provenance": [
+      {
+        "value": 0.9381,
+        "definition": "金标构造方 score() 的 fp 逐条覆盖 bug（虚高近一倍，全程无报错）",
+        "status": "**脏** —— 作废"
+      },
+      {
+        "value": 0.5106,
+        "definition": "金标构造方 score()，但**池未清空**（零方向条目的 15 个预测进了主表 FP）→ 基线被低估 0.06",
+        "status": "**池口径不一致** —— 修完后与评测器路径同数 0.5749；此数本身作废"
+      },
+      {
+        "value": 0.5397,
+        "definition": "评测器 scorer + 评测器匹配 @0.34（评测器默认阈值）",
+        "status": "**规范口径** —— 参考点"
+      },
+      {
+        "value": 0.5714,
+        "definition": "评测器 scorer + 评测器匹配 @0.20–0.25（最有利阈值），**池已清空**",
+        "status": "**规范口径** —— 门槛基准 0.5749（变体取高 + 匹配阈值取高 + 池清空）"
+      }
+    ],
+    "constraint_violation_details": [],
+    "constraint_violation_count": 0,
+    "constraint_violation_sensitivity": {
+      "f1_excluding_constraint_violations": 0.6667,
+      "f1_including_constraint_violations": 0.6667,
+      "delta": 0.0,
+      "note": "⑲-c 敏感性对照：把 constraint_violation 方向**不排除**时的 F1 = 上界。差值越大 =「排除」这个决定对 F1 的影响越大，越要说明清楚。X 段判定过宽会把真方向排掉 → 虚高 F1。"
+    },
+    "introduced_in_synthesis_count": 0,
+    "introduced_in_synthesis_details": [],
+    "lexical_baseline": {
+      "f1": 0.5749,
+      "p": null,
+      "r": null,
+      "status_accuracy": 0.5,
+      "best_variant": "词法基线（主表口径，V1）",
+      "local_max_f1": 0.0,
+      "local_max_variant": "wide|full_trace",
+      "gate_basis_kind": "end_to_end",
+      "end_to_end_available": true,
+      "external_baselines": [
+        {
+          "name": "词法基线（主表口径，V1）",
+          "source": "baseline_main_caliber.json",
+          "caliber": "main_table（not_generated 不计入主表）",
+          "caliber_kind": "end_to_end",
+          "mode": "closed",
+          "f1": 0.5749,
+          "all_directions_caliber_f1": null,
+          "recommended_gate_f1": 0.6509,
+          "same_threshold_f1": 0.5509,
+          "same_threshold_params": {
+            "variant": "V1",
+            "oof_thr": 0.15,
+            "stance_thr": 0.3,
+            "match_thr": 0.34
+          },
+          "max_over_thresholds_f1": 0.5749,
+          "strong_pass_line_f1": 0.6749,
+          "gate_point_params": {
+            "variant": "V1",
+            "oof_thr": 0.15,
+            "stance_thr": 0.3,
+            "match_thr": 0.2
+          },
+          "sensitivity_curve": [
+            {
+              "match_thr": 0.2,
+              "baseline_f1": 0.5749,
+              "precision": 0.4248,
+              "recall": 0.8889
+            },
+            {
+              "match_thr": 0.25,
+              "baseline_f1": 0.5749,
+              "precision": 0.4248,
+              "recall": 0.8889
+            },
+            {
+              "match_thr": 0.3,
+              "baseline_f1": 0.5749,
+              "precision": 0.4248,
+              "recall": 0.8889
+            },
+            {
+              "match_thr": 0.34,
+              "baseline_f1": 0.5509,
+              "precision": 0.4071,
+              "recall": 0.8519
+            },
+            {
+              "match_thr": 0.35,
+              "baseline_f1": 0.5509,
+              "precision": 0.4071,
+              "recall": 0.8519
+            },
+            {
+              "match_thr": 0.4,
+              "baseline_f1": 0.515,
+              "precision": 0.3805,
+              "recall": 0.7963
+            },
+            {
+              "match_thr": 0.45,
+              "baseline_f1": 0.479,
+              "precision": 0.354,
+              "recall": 0.7407
+            },
+            {
+              "match_thr": 0.5,
+              "baseline_f1": 0.479,
+              "precision": 0.354,
+              "recall": 0.7407
+            },
+            {
+              "match_thr": 0.55,
+              "baseline_f1": 0.4431,
+              "precision": 0.3274,
+              "recall": 0.6852
+            },
+            {
+              "match_thr": 0.6,
+              "baseline_f1": 0.3537,
+              "precision": 0.2636,
+              "recall": 0.537
+            }
+          ],
+          "pool_caliber": "cleared",
+          "pool_caliber_ok": true,
+          "note": "**主表口径**，与抽取器的主表 F1 同口径 —— 门槛必须用这一份。原始扫描表的 F1 是含 miss detection 口径，不能用于门槛。⑳-b：门槛比较是**同点比较** —— 抽取器必须在取得该基准的**同一个匹配阈值**上被评分。"
+        }
+      ],
+      "variants": {
+        "narrow|evidence_quote": {
+          "f1": 0.0,
+          "p": 0.0,
+          "r": 0.0,
+          "status_accuracy": 0.5,
+          "lexicon": "narrow",
+          "corpus": "evidence_quote"
+        },
+        "narrow|full_trace": {
+          "f1": 0.0,
+          "p": 0.0,
+          "r": 0.0,
+          "status_accuracy": 0.5,
+          "lexicon": "narrow",
+          "corpus": "full_trace"
+        },
+        "narrow|final_answer": {
+          "f1": 0.0,
+          "p": 0.0,
+          "r": 0.0,
+          "status_accuracy": 0.5,
+          "lexicon": "narrow",
+          "corpus": "final_answer"
+        },
+        "wide|evidence_quote": {
+          "f1": 0.0,
+          "p": 0.0,
+          "r": 0.0,
+          "status_accuracy": 0.5,
+          "lexicon": "wide",
+          "corpus": "evidence_quote"
+        },
+        "wide|full_trace": {
+          "f1": 0.0,
+          "p": 0.0,
+          "r": 0.0,
+          "status_accuracy": 0.5,
+          "lexicon": "wide",
+          "corpus": "full_trace"
+        },
+        "wide|final_answer": {
+          "f1": 0.0,
+          "p": 0.0,
+          "r": 0.0,
+          "status_accuracy": 0.5,
+          "lexicon": "wide",
+          "corpus": "final_answer"
+        }
+      },
+      "f1_range": [
+        0.0,
+        0.0
+      ],
+      "note": "6 个实现变体（3 语料 × 宽/窄词表）全报；门槛基准取最高 F1 —— 门槛的作用是「证明尺子学到了语义」，那就必须打败最努力的词法匹配器。"
+    },
+    "true_increment": {
+      "f1": 0.0918,
+      "f1_vs_end_to_end": 0.0918,
+      "status_accuracy": 0.5,
+      "baseline_best_f1": 0.5749,
+      "baseline_best_variant": "词法基线（主表口径，V1）",
+      "statement": "真实增量 = 抽取器 F1 − 词法基线最高 F1 = 0.09（PSC-Eval 相对于关键词匹配基线的真实语义增量）",
+      "statement_vs_end_to_end": "真实增量(vs 端到端闭卷基线 0.5749) = 抽取器 F1 − 0.5749 = 0.09（M2 固定门槛口径）",
+      "required_extractor_f1": 0.6749
+    },
+    "zero_direction": {
+      "n_items": 0,
+      "zero_direction_precision": null,
+      "zero_direction_overclaim_rate": null,
+      "note": "零方向条目（正确答案是「没有域外方向」）不计入主 F1，但单独报告这两个数 —— 过度声称率低说明抽取器守住了「漏判 ≫ 误判」的非对称义务，这是正向质量信号。"
+    },
+    "zero_direction_precision": null,
+    "zero_direction_overclaim_rate": null,
+    "violations": [],
+    "branch_coverage": {
+      "miss_bucket.main": 2,
+      "miss_bucket.author_only": 0,
+      "miss_bucket.low_reportability": 0,
+      "quote_tier.exact": 4,
+      "quote_tier.punct": 0,
+      "quote_tier.ungrounded": 0,
+      "constraint_violation": 0,
+      "introduced_in_synthesis": 0,
+      "stance_misattribution": 0,
+      "violations": 0
+    },
+    "branches_without_real_data": [
+      "constraint_violation",
+      "introduced_in_synthesis",
+      "miss_bucket.author_only",
+      "miss_bucket.low_reportability",
+      "quote_tier.punct",
+      "quote_tier.ungrounded",
+      "stance_misattribution",
+      "violations"
+    ],
+    "branch_coverage_note": "㉓-e ① / General 的通则：「任何检查/分支，至少要有一条真实数据路径能走进去。走不进去的分支 = 装饰品 —— 它『通过』与否与真实结果无关。」**branches_without_real_data 列出的分支，其正确性由合成用例保证，不由本集数据保证。**",
+    "expected_source_distribution": {
+      "unknown": 4
+    },
+    "expected_source_distribution_not_generated": {
+      "unknown": 2
+    },
+    "trap_hits": 1,
+    "items": [
+      {
+        "id": "psc-001",
+        "frame_schema": "conforming",
+        "frame_closure": "closed",
+        "openbook": false,
+        "frame_note_leaks": [],
+        "frame_note_checked": 1,
+        "n_gold_out_of_frame": 2,
+        "gold_direction_buckets": {
+          "考虑强基计划等特殊招生路径": "main"
+        },
+        "gold_directions_snapshot": [
+          {
+            "direction": "把家庭支持作为选校维度",
+            "status": "selection_failure",
+            "decision_effect": "option_added",
+            "evidence_quote": "还可以看看家庭支持这个维度"
+          },
+          {
+            "direction": "考虑强基计划等特殊招生路径",
+            "status": "not_generated",
+            "decision_effect": "conclusion_flip",
+            "evidence_quote": ""
+          }
+        ],
+        "n_gold_in_frame_traps": 1,
+        "n_pred_total": 3,
+        "n_pred_out_of_frame": 3,
+        "n_pred_in_frame": 0,
+        "tp": 1,
+        "fp": 1,
+        "fn": 0,
+        "precision": 0.5,
+        "recall": 1.0,
+        "f1": 0.6667,
+        "miss_detection": {
+          "hit": 1,
+          "missed": 0,
+          "spurious": 0,
+          "miss_detection_recall": 1.0,
+          "miss_detection_precision": 1.0,
+          "hit_main": 1,
+          "missed_main": 0,
+          "miss_detection_recall_main": 1.0,
+          "hit_author_only": 0,
+          "missed_author_only": 0,
+          "miss_detection_recall_author_only": null,
+          "hit_low_reportability": 0,
+          "missed_low_reportability": 0,
+          "miss_detection_recall_low_reportability": null,
+          "main_measurable": true,
+          "main_unmeasurable_reason": "",
+          "bucket_counts": {
+            "main": 1,
+            "author_only": 0,
+            "low_reportability": 0
+          },
+          "source_review": {
+            "labeled": 0,
+            "unlabeled": 1,
+            "unknown": 0
+          },
+          "unknown_source_in_main": 1,
+          "unknown_source_details": [
+            {
+              "direction": "考虑强基计划等特殊招生路径",
+              "expected_source": null,
+              "review_state": "unlabeled",
+              "bucket": "main"
+            }
+          ],
+          "prp_admissibility": []
+        },
+        "zero_direction": false,
+        "zero_direction_clean": false,
+        "zero_direction_overclaim": false,
+        "zero_direction_pred_count": 3,
+        "include_miss_detection": false,
+        "matched": [
+          {
+            "gold_index": 0,
+            "pred_index": 0,
+            "similarity": 1.0,
+            "gold_direction": "把家庭支持作为选校维度",
+            "pred_direction": "把家庭支持作为选校维度",
+            "gold_status": "selection_failure",
+            "pred_status": "selection_failure",
+            "status_match": true,
+            "pred_status_ambiguous": false,
+            "gold_decision_effect": "option_added",
+            "pred_decision_effect": "ranking_only",
+            "decision_effect_match": false,
+            "gold_category": "main"
+          },
+          {
+            "gold_index": 1,
+            "pred_index": 1,
+            "similarity": 1.0,
+            "gold_direction": "考虑强基计划等特殊招生路径",
+            "pred_direction": "考虑强基计划等特殊招生路径",
+            "gold_status": "not_generated",
+            "pred_status": "not_generated",
+            "status_match": true,
+            "pred_status_ambiguous": false,
+            "gold_decision_effect": "conclusion_flip",
+            "pred_decision_effect": "conclusion_flip",
+            "decision_effect_match": true,
+            "gold_category": "miss"
+          }
+        ],
+        "false_positives": [
+          {
+            "pred_direction": "把户籍政策作为选校维度",
+            "pred_status": "realized"
+          }
+        ],
+        "false_negatives": [],
+        "invalid_status_preds": 0,
+        "status_confusion": {
+          "realized": {
+            "realized": 0,
+            "expression_failure": 0,
+            "selection_failure": 0,
+            "not_generated": 0
+          },
+          "expression_failure": {
+            "realized": 0,
+            "expression_failure": 0,
+            "selection_failure": 0,
+            "not_generated": 0
+          },
+          "selection_failure": {
+            "realized": 0,
+            "expression_failure": 0,
+            "selection_failure": 1,
+            "not_generated": 0
+          },
+          "not_generated": {
+            "realized": 0,
+            "expression_failure": 0,
+            "selection_failure": 0,
+            "not_generated": 1
+          }
+        },
+        "status_accuracy": 1.0,
+        "status_checked": 2,
+        "status_accuracy_strict": 1.0,
+        "status_decidable_checked": 2,
+        "status_undecidable_count": 0,
+        "status_undecidable_rate": 0.0,
+        "status_ambiguous_items": 0,
+        "status_agreement": true,
+        "status_agreement_strict": true,
+        "selection_expression_separability": 1.0,
+        "selection_expression_checked": 1,
+        "selection_expression_separability_adjudicated": null,
+        "selection_expression_adjudicated_checked": 0,
+        "decision_effect_agreement": 0.5,
+        "decision_effect_exact_agreement": 0.5,
+        "decision_effect_checked": 2,
+        "weak_effect_count": 1,
+        "weak_effects": [
+          {
+            "direction": "把家庭支持作为选校维度",
+            "decision_effect": "ranking_only",
+            "status": "selection_failure"
+          }
+        ],
+        "quote_grounding": {
+          "checked": 3,
+          "exact": 2,
+          "whitespace": 0,
+          "empty": 1,
+          "ungrounded": 0,
+          "required": 2,
+          "required_grounded": 2,
+          "not_generated_with_quote": 0
+        },
+        "quote_grounding_rate": 1.0,
+        "violations": [],
+        "constraint_violation_candidates": [],
+        "constraint_violation_count": 0,
+        "introduced_in_synthesis": [],
+        "introduced_in_synthesis_count": 0,
+        "stance_misattribution": [],
+        "stance_misattribution_count": 0,
+        "gold_evidence_fragments": 1,
+        "gold_evidence_grounded": 1,
+        "gold_evidence_stats": {
+          "fragments": 1,
+          "exact": 1,
+          "punct": 0,
+          "ungrounded": 0
+        },
+        "gold_evidence_extraction_failed": 0,
+        "gold_evidence_skipped_not_generated": 1,
+        "gold_evidence_grounding_rate": 1.0,
+        "gold_legacy_effect_count": 0,
+        "gold_miss_total": 1,
+        "gold_miss_key_count": 1,
+        "expected_source_distribution": {
+          "unknown": 2
+        },
+        "expected_source_distribution_not_generated": {
+          "unknown": 1
+        },
+        "trap_hits": [],
+        "out_of_frame_called_in_frame": [],
+        "frame_ambiguous": false,
+        "warnings": [],
+        "f1_with_constraint_violations_included": 0.6667,
+        "f1_exclusion_delta": 0.0,
+        "tp_incl": 1,
+        "fp_incl": 1,
+        "fn_incl": 0,
+        "lexical_baseline_variants": {
+          "narrow|evidence_quote": {
+            "f1": 0.0,
+            "p": 0.0,
+            "r": 0.0,
+            "status_accuracy": 0.5,
+            "caliber": "status_only（方向集合与 in_frame 沿用抽取器输出，只把 status 换成关键词推断）",
+            "caliber_kind": "status_only",
+            "f1_comparable": false,
+            "headline_metric": "status_accuracy",
+            "tp": 0,
+            "fp": 0,
+            "fn": 1,
+            "status_correct": 1,
+            "status_checked": 2,
+            "lexicon": "narrow",
+            "corpus": "evidence_quote"
+          },
+          "narrow|full_trace": {
+            "f1": 0.0,
+            "p": 0.0,
+            "r": 0.0,
+            "status_accuracy": 0.5,
+            "caliber": "status_only（方向集合与 in_frame 沿用抽取器输出，只把 status 换成关键词推断）",
+            "caliber_kind": "status_only",
+            "f1_comparable": false,
+            "headline_metric": "status_accuracy",
+            "tp": 0,
+            "fp": 0,
+            "fn": 1,
+            "status_correct": 1,
+            "status_checked": 2,
+            "lexicon": "narrow",
+            "corpus": "full_trace"
+          },
+          "narrow|final_answer": {
+            "f1": 0.0,
+            "p": 0.0,
+            "r": 0.0,
+            "status_accuracy": 0.5,
+            "caliber": "status_only（方向集合与 in_frame 沿用抽取器输出，只把 status 换成关键词推断）",
+            "caliber_kind": "status_only",
+            "f1_comparable": false,
+            "headline_metric": "status_accuracy",
+            "tp": 0,
+            "fp": 0,
+            "fn": 1,
+            "status_correct": 1,
+            "status_checked": 2,
+            "lexicon": "narrow",
+            "corpus": "final_answer"
+          },
+          "wide|evidence_quote": {
+            "f1": 0.0,
+            "p": 0.0,
+            "r": 0.0,
+            "status_accuracy": 0.5,
+            "caliber": "status_only（方向集合与 in_frame 沿用抽取器输出，只把 status 换成关键词推断）",
+            "caliber_kind": "status_only",
+            "f1_comparable": false,
+            "headline_metric": "status_accuracy",
+            "tp": 0,
+            "fp": 0,
+            "fn": 1,
+            "status_correct": 1,
+            "status_checked": 2,
+            "lexicon": "wide",
+            "corpus": "evidence_quote"
+          },
+          "wide|full_trace": {
+            "f1": 0.0,
+            "p": 0.0,
+            "r": 0.0,
+            "status_accuracy": 0.5,
+            "caliber": "status_only（方向集合与 in_frame 沿用抽取器输出，只把 status 换成关键词推断）",
+            "caliber_kind": "status_only",
+            "f1_comparable": false,
+            "headline_metric": "status_accuracy",
+            "tp": 0,
+            "fp": 0,
+            "fn": 1,
+            "status_correct": 1,
+            "status_checked": 2,
+            "lexicon": "wide",
+            "corpus": "full_trace"
+          },
+          "wide|final_answer": {
+            "f1": 0.0,
+            "p": 0.0,
+            "r": 0.0,
+            "status_accuracy": 0.5,
+            "caliber": "status_only（方向集合与 in_frame 沿用抽取器输出，只把 status 换成关键词推断）",
+            "caliber_kind": "status_only",
+            "f1_comparable": false,
+            "headline_metric": "status_accuracy",
+            "tp": 0,
+            "fp": 0,
+            "fn": 1,
+            "status_correct": 1,
+            "status_checked": 2,
+            "lexicon": "wide",
+            "corpus": "final_answer"
+          }
+        },
+        "lexical_baseline_external": [
+          {
+            "name": "词法基线（主表口径，V1）",
+            "source": "baseline_main_caliber.json",
+            "caliber": "main_table（not_generated 不计入主表）",
+            "caliber_kind": "end_to_end",
+            "mode": "closed",
+            "f1": 0.5749,
+            "all_directions_caliber_f1": null,
+            "recommended_gate_f1": 0.6509,
+            "same_threshold_f1": 0.5509,
+            "same_threshold_params": {
+              "variant": "V1",
+              "oof_thr": 0.15,
+              "stance_thr": 0.3,
+              "match_thr": 0.34
+            },
+            "max_over_thresholds_f1": 0.5749,
+            "strong_pass_line_f1": 0.6749,
+            "gate_point_params": {
+              "variant": "V1",
+              "oof_thr": 0.15,
+              "stance_thr": 0.3,
+              "match_thr": 0.2
+            },
+            "sensitivity_curve": [
+              {
+                "match_thr": 0.2,
+                "baseline_f1": 0.5749,
+                "precision": 0.4248,
+                "recall": 0.8889
+              },
+              {
+                "match_thr": 0.25,
+                "baseline_f1": 0.5749,
+                "precision": 0.4248,
+                "recall": 0.8889
+              },
+              {
+                "match_thr": 0.3,
+                "baseline_f1": 0.5749,
+                "precision": 0.4248,
+                "recall": 0.8889
+              },
+              {
+                "match_thr": 0.34,
+                "baseline_f1": 0.5509,
+                "precision": 0.4071,
+                "recall": 0.8519
+              },
+              {
+                "match_thr": 0.35,
+                "baseline_f1": 0.5509,
+                "precision": 0.4071,
+                "recall": 0.8519
+              },
+              {
+                "match_thr": 0.4,
+                "baseline_f1": 0.515,
+                "precision": 0.3805,
+                "recall": 0.7963
+              },
+              {
+                "match_thr": 0.45,
+                "baseline_f1": 0.479,
+                "precision": 0.354,
+                "recall": 0.7407
+              },
+              {
+                "match_thr": 0.5,
+                "baseline_f1": 0.479,
+                "precision": 0.354,
+                "recall": 0.7407
+              },
+              {
+                "match_thr": 0.55,
+                "baseline_f1": 0.4431,
+                "precision": 0.3274,
+                "recall": 0.6852
+              },
+              {
+                "match_thr": 0.6,
+                "baseline_f1": 0.3537,
+                "precision": 0.2636,
+                "recall": 0.537
+              }
+            ],
+            "pool_caliber": "cleared",
+            "pool_caliber_ok": true,
+            "note": "**主表口径**，与抽取器的主表 F1 同口径 —— 门槛必须用这一份。原始扫描表的 F1 是含 miss detection 口径，不能用于门槛。⑳-b：门槛比较是**同点比较** —— 抽取器必须在取得该基准的**同一个匹配阈值**上被评分。"
+          }
+        ],
+        "lexical_baseline": {
+          "f1": 0.5749,
+          "p": null,
+          "r": null,
+          "status_accuracy": null,
+          "best_variant": "词法基线（主表口径，V1）",
+          "local_max_f1": 0.0,
+          "local_max_variant": "wide|full_trace",
+          "gate_basis_kind": "end_to_end",
+          "note": "门槛基准取 **end_to_end（抽取器无关）** 实现里的最高 F1 —— 门槛必须是一个固定基准，不能随抽取器的候选质量浮动，否则就是循环论证。本地 6 个变体是 status_only 口径（方向集合沿用抽取器输出），全表报告，作为「如果 status 只用关键词判会掉多少分」的诊断，不作门槛基准。"
+        },
+        "true_increment": {
+          "f1": 0.0918,
+          "status_accuracy": null,
+          "baseline_best_f1": 0.5749,
+          "baseline_best_variant": "词法基线（主表口径，V1）"
+        }
+      },
+      {
+        "id": "psc-002",
+        "frame_schema": "conforming",
+        "frame_closure": "closed",
+        "openbook": false,
+        "frame_note_leaks": [],
+        "frame_note_checked": 0,
+        "n_gold_out_of_frame": 1,
+        "gold_direction_buckets": {
+          "把次月留存作为评价维度": "main"
+        },
+        "gold_directions_snapshot": [
+          {
+            "direction": "把次月留存作为评价维度",
+            "status": "not_generated",
+            "decision_effect": "conclusion_flip",
+            "evidence_quote": ""
+          }
+        ],
+        "n_gold_in_frame_traps": 1,
+        "n_pred_total": 2,
+        "n_pred_out_of_frame": 2,
+        "n_pred_in_frame": 0,
+        "tp": 0,
+        "fp": 1,
+        "fn": 0,
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1": 0.0,
+        "miss_detection": {
+          "hit": 1,
+          "missed": 0,
+          "spurious": 0,
+          "miss_detection_recall": 1.0,
+          "miss_detection_precision": 1.0,
+          "hit_main": 1,
+          "missed_main": 0,
+          "miss_detection_recall_main": 1.0,
+          "hit_author_only": 0,
+          "missed_author_only": 0,
+          "miss_detection_recall_author_only": null,
+          "hit_low_reportability": 0,
+          "missed_low_reportability": 0,
+          "miss_detection_recall_low_reportability": null,
+          "main_measurable": true,
+          "main_unmeasurable_reason": "",
+          "bucket_counts": {
+            "main": 1,
+            "author_only": 0,
+            "low_reportability": 0
+          },
+          "source_review": {
+            "labeled": 0,
+            "unlabeled": 1,
+            "unknown": 0
+          },
+          "unknown_source_in_main": 1,
+          "unknown_source_details": [
+            {
+              "direction": "把次月留存作为评价维度",
+              "expected_source": null,
+              "review_state": "unlabeled",
+              "bucket": "main"
+            }
+          ],
+          "prp_admissibility": []
+        },
+        "zero_direction": false,
+        "zero_direction_clean": false,
+        "zero_direction_overclaim": false,
+        "zero_direction_pred_count": 2,
+        "include_miss_detection": false,
+        "matched": [
+          {
+            "gold_index": 0,
+            "pred_index": 0,
+            "similarity": 1.0,
+            "gold_direction": "把次月留存作为评价维度",
+            "pred_direction": "把次月留存作为评价维度",
+            "gold_status": "not_generated",
+            "pred_status": "not_generated",
+            "status_match": true,
+            "pred_status_ambiguous": false,
+            "gold_decision_effect": "conclusion_flip",
+            "pred_decision_effect": "conclusion_flip",
+            "decision_effect_match": true,
+            "gold_category": "miss"
+          }
+        ],
+        "false_positives": [
+          {
+            "pred_direction": "计算满减券的获客成本",
+            "pred_status": "realized"
+          }
+        ],
+        "false_negatives": [],
+        "invalid_status_preds": 0,
+        "status_confusion": {
+          "realized": {
+            "realized": 0,
+            "expression_failure": 0,
+            "selection_failure": 0,
+            "not_generated": 0
+          },
+          "expression_failure": {
+            "realized": 0,
+            "expression_failure": 0,
+            "selection_failure": 0,
+            "not_generated": 0
+          },
+          "selection_failure": {
+            "realized": 0,
+            "expression_failure": 0,
+            "selection_failure": 0,
+            "not_generated": 0
+          },
+          "not_generated": {
+            "realized": 0,
+            "expression_failure": 0,
+            "selection_failure": 0,
+            "not_generated": 1
+          }
+        },
+        "status_accuracy": 1.0,
+        "status_checked": 1,
+        "status_accuracy_strict": 1.0,
+        "status_decidable_checked": 1,
+        "status_undecidable_count": 0,
+        "status_undecidable_rate": 0.0,
+        "status_ambiguous_items": 0,
+        "status_agreement": true,
+        "status_agreement_strict": true,
+        "selection_expression_separability": null,
+        "selection_expression_checked": 0,
+        "selection_expression_separability_adjudicated": null,
+        "selection_expression_adjudicated_checked": 0,
+        "decision_effect_agreement": 1.0,
+        "decision_effect_exact_agreement": 1.0,
+        "decision_effect_checked": 1,
+        "weak_effect_count": 0,
+        "weak_effects": [],
+        "quote_grounding": {
+          "checked": 2,
+          "exact": 1,
+          "whitespace": 0,
+          "empty": 1,
+          "ungrounded": 0,
+          "required": 1,
+          "required_grounded": 1,
+          "not_generated_with_quote": 0
+        },
+        "quote_grounding_rate": 1.0,
+        "violations": [],
+        "constraint_violation_candidates": [],
+        "constraint_violation_count": 0,
+        "introduced_in_synthesis": [],
+        "introduced_in_synthesis_count": 0,
+        "stance_misattribution": [],
+        "stance_misattribution_count": 0,
+        "gold_evidence_fragments": 0,
+        "gold_evidence_grounded": 0,
+        "gold_evidence_stats": {
+          "fragments": 0,
+          "exact": 0,
+          "punct": 0,
+          "ungrounded": 0
+        },
+        "gold_evidence_extraction_failed": 0,
+        "gold_evidence_skipped_not_generated": 1,
+        "gold_evidence_grounding_rate": null,
+        "gold_legacy_effect_count": 0,
+        "gold_miss_total": 1,
+        "gold_miss_key_count": 1,
+        "expected_source_distribution": {
+          "unknown": 1
+        },
+        "expected_source_distribution_not_generated": {
+          "unknown": 1
+        },
+        "trap_hits": [
+          {
+            "gold_direction": "计算满减券的获客成本",
+            "pred_direction": "计算满减券的获客成本",
+            "note": "金标判为域内，预测判为域外（over-claiming）"
+          }
+        ],
+        "out_of_frame_called_in_frame": [],
+        "frame_ambiguous": false,
+        "warnings": [],
+        "f1_with_constraint_violations_included": 0.0,
+        "f1_exclusion_delta": 0.0,
+        "tp_incl": 0,
+        "fp_incl": 1,
+        "fn_incl": 0,
+        "lexical_baseline_variants": {
+          "narrow|evidence_quote": {
+            "f1": 0.0,
+            "p": 0.0,
+            "r": 0.0,
+            "status_accuracy": 1.0,
+            "caliber": "status_only（方向集合与 in_frame 沿用抽取器输出，只把 status 换成关键词推断）",
+            "caliber_kind": "status_only",
+            "f1_comparable": false,
+            "headline_metric": "status_accuracy",
+            "tp": 0,
+            "fp": 1,
+            "fn": 0,
+            "status_correct": 1,
+            "status_checked": 1,
+            "lexicon": "narrow",
+            "corpus": "evidence_quote"
+          },
+          "narrow|full_trace": {
+            "f1": 0.0,
+            "p": 0.0,
+            "r": 0.0,
+            "status_accuracy": 1.0,
+            "caliber": "status_only（方向集合与 in_frame 沿用抽取器输出，只把 status 换成关键词推断）",
+            "caliber_kind": "status_only",
+            "f1_comparable": false,
+            "headline_metric": "status_accuracy",
+            "tp": 0,
+            "fp": 1,
+            "fn": 0,
+            "status_correct": 1,
+            "status_checked": 1,
+            "lexicon": "narrow",
+            "corpus": "full_trace"
+          },
+          "narrow|final_answer": {
+            "f1": 0.0,
+            "p": 0.0,
+            "r": 0.0,
+            "status_accuracy": 1.0,
+            "caliber": "status_only（方向集合与 in_frame 沿用抽取器输出，只把 status 换成关键词推断）",
+            "caliber_kind": "status_only",
+            "f1_comparable": false,
+            "headline_metric": "status_accuracy",
+            "tp": 0,
+            "fp": 0,
+            "fn": 0,
+            "status_correct": 1,
+            "status_checked": 1,
+            "lexicon": "narrow",
+            "corpus": "final_answer"
+          },
+          "wide|evidence_quote": {
+            "f1": 0.0,
+            "p": 0.0,
+            "r": 0.0,
+            "status_accuracy": 1.0,
+            "caliber": "status_only（方向集合与 in_frame 沿用抽取器输出，只把 status 换成关键词推断）",
+            "caliber_kind": "status_only",
+            "f1_comparable": false,
+            "headline_metric": "status_accuracy",
+            "tp": 0,
+            "fp": 1,
+            "fn": 0,
+            "status_correct": 1,
+            "status_checked": 1,
+            "lexicon": "wide",
+            "corpus": "evidence_quote"
+          },
+          "wide|full_trace": {
+            "f1": 0.0,
+            "p": 0.0,
+            "r": 0.0,
+            "status_accuracy": 1.0,
+            "caliber": "status_only（方向集合与 in_frame 沿用抽取器输出，只把 status 换成关键词推断）",
+            "caliber_kind": "status_only",
+            "f1_comparable": false,
+            "headline_metric": "status_accuracy",
+            "tp": 0,
+            "fp": 1,
+            "fn": 0,
+            "status_correct": 1,
+            "status_checked": 1,
+            "lexicon": "wide",
+            "corpus": "full_trace"
+          },
+          "wide|final_answer": {
+            "f1": 0.0,
+            "p": 0.0,
+            "r": 0.0,
+            "status_accuracy": 1.0,
+            "caliber": "status_only（方向集合与 in_frame 沿用抽取器输出，只把 status 换成关键词推断）",
+            "caliber_kind": "status_only",
+            "f1_comparable": false,
+            "headline_metric": "status_accuracy",
+            "tp": 0,
+            "fp": 0,
+            "fn": 0,
+            "status_correct": 1,
+            "status_checked": 1,
+            "lexicon": "wide",
+            "corpus": "final_answer"
+          }
+        },
+        "lexical_baseline_external": [
+          {
+            "name": "词法基线（主表口径，V1）",
+            "source": "baseline_main_caliber.json",
+            "caliber": "main_table（not_generated 不计入主表）",
+            "caliber_kind": "end_to_end",
+            "mode": "closed",
+            "f1": 0.5749,
+            "all_directions_caliber_f1": null,
+            "recommended_gate_f1": 0.6509,
+            "same_threshold_f1": 0.5509,
+            "same_threshold_params": {
+              "variant": "V1",
+              "oof_thr": 0.15,
+              "stance_thr": 0.3,
+              "match_thr": 0.34
+            },
+            "max_over_thresholds_f1": 0.5749,
+            "strong_pass_line_f1": 0.6749,
+            "gate_point_params": {
+              "variant": "V1",
+              "oof_thr": 0.15,
+              "stance_thr": 0.3,
+              "match_thr": 0.2
+            },
+            "sensitivity_curve": [
+              {
+                "match_thr": 0.2,
+                "baseline_f1": 0.5749,
+                "precision": 0.4248,
+                "recall": 0.8889
+              },
+              {
+                "match_thr": 0.25,
+                "baseline_f1": 0.5749,
+                "precision": 0.4248,
+                "recall": 0.8889
+              },
+              {
+                "match_thr": 0.3,
+                "baseline_f1": 0.5749,
+                "precision": 0.4248,
+                "recall": 0.8889
+              },
+              {
+                "match_thr": 0.34,
+                "baseline_f1": 0.5509,
+                "precision": 0.4071,
+                "recall": 0.8519
+              },
+              {
+                "match_thr": 0.35,
+                "baseline_f1": 0.5509,
+                "precision": 0.4071,
+                "recall": 0.8519
+              },
+              {
+                "match_thr": 0.4,
+                "baseline_f1": 0.515,
+                "precision": 0.3805,
+                "recall": 0.7963
+              },
+              {
+                "match_thr": 0.45,
+                "baseline_f1": 0.479,
+                "precision": 0.354,
+                "recall": 0.7407
+              },
+              {
+                "match_thr": 0.5,
+                "baseline_f1": 0.479,
+                "precision": 0.354,
+                "recall": 0.7407
+              },
+              {
+                "match_thr": 0.55,
+                "baseline_f1": 0.4431,
+                "precision": 0.3274,
+                "recall": 0.6852
+              },
+              {
+                "match_thr": 0.6,
+                "baseline_f1": 0.3537,
+                "precision": 0.2636,
+                "recall": 0.537
+              }
+            ],
+            "pool_caliber": "cleared",
+            "pool_caliber_ok": true,
+            "note": "**主表口径**，与抽取器的主表 F1 同口径 —— 门槛必须用这一份。原始扫描表的 F1 是含 miss detection 口径，不能用于门槛。⑳-b：门槛比较是**同点比较** —— 抽取器必须在取得该基准的**同一个匹配阈值**上被评分。"
+          }
+        ],
+        "lexical_baseline": {
+          "f1": 0.5749,
+          "p": null,
+          "r": null,
+          "status_accuracy": null,
+          "best_variant": "词法基线（主表口径，V1）",
+          "local_max_f1": 0.0,
+          "local_max_variant": "wide|full_trace",
+          "gate_basis_kind": "end_to_end",
+          "note": "门槛基准取 **end_to_end（抽取器无关）** 实现里的最高 F1 —— 门槛必须是一个固定基准，不能随抽取器的候选质量浮动，否则就是循环论证。本地 6 个变体是 status_only 口径（方向集合沿用抽取器输出），全表报告，作为「如果 status 只用关键词判会掉多少分」的诊断，不作门槛基准。"
+        },
+        "true_increment": {
+          "f1": -0.5749,
+          "status_accuracy": null,
+          "baseline_best_f1": 0.5749,
+          "baseline_best_variant": "词法基线（主表口径，V1）"
+        }
+      },
+      {
+        "id": "psc-003",
+        "frame_schema": "non_conforming",
+        "frame_closure": "",
+        "openbook": false,
+        "frame_note_leaks": [],
+        "frame_note_checked": 0,
+        "n_gold_out_of_frame": 1,
+        "gold_direction_buckets": {},
+        "gold_directions_snapshot": [
+          {
+            "direction": "设立核心贡献者名单并允许跳过一名维护者 review",
+            "status": "selection_failure",
+            "decision_effect": "option_added",
+            "evidence_quote": "先统计过去半年的 PR 数据。"
+          }
+        ],
+        "n_gold_in_frame_traps": 0,
+        "n_pred_total": 1,
+        "n_pred_out_of_frame": 1,
+        "n_pred_in_frame": 0,
+        "tp": 1,
+        "fp": 0,
+        "fn": 0,
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0,
+        "miss_detection": {
+          "hit": 0,
+          "missed": 0,
+          "spurious": 0,
+          "miss_detection_recall": null,
+          "miss_detection_precision": null,
+          "hit_main": 0,
+          "missed_main": 0,
+          "miss_detection_recall_main": null,
+          "hit_author_only": 0,
+          "missed_author_only": 0,
+          "miss_detection_recall_author_only": null,
+          "hit_low_reportability": 0,
+          "missed_low_reportability": 0,
+          "miss_detection_recall_low_reportability": null,
+          "main_measurable": false,
+          "main_unmeasurable_reason": "主召回桶分母为 0（该金标集的 not_generated 条目全部落在 author_only / low_reportability 两个单列桶）—— **不可度量（分母为 0）**。⚠ **靶子不可达 ≠ 选手没打中** —— 是闭卷金标这一维测不到，不是抽取器不行。不构成抽取器缺陷。",
+          "bucket_counts": {
+            "main": 0,
+            "author_only": 0,
+            "low_reportability": 0
+          },
+          "source_review": {
+            "labeled": 0,
+            "unlabeled": 0,
+            "unknown": 0
+          },
+          "unknown_source_in_main": 0,
+          "unknown_source_details": [],
+          "prp_admissibility": []
+        },
+        "zero_direction": false,
+        "zero_direction_clean": false,
+        "zero_direction_overclaim": false,
+        "zero_direction_pred_count": 1,
+        "include_miss_detection": false,
+        "matched": [
+          {
+            "gold_index": 0,
+            "pred_index": 0,
+            "similarity": 1.0,
+            "gold_direction": "设立核心贡献者名单并允许跳过一名维护者 review",
+            "pred_direction": "设立核心贡献者名单并允许跳过一名维护者 review",
+            "gold_status": "selection_failure",
+            "pred_status": "selection_failure",
+            "status_match": true,
+            "pred_status_ambiguous": false,
+            "gold_decision_effect": "option_added",
+            "pred_decision_effect": "option_added",
+            "decision_effect_match": true,
+            "gold_category": "main"
+          }
+        ],
+        "false_positives": [],
+        "false_negatives": [],
+        "invalid_status_preds": 0,
+        "status_confusion": {
+          "realized": {
+            "realized": 0,
+            "expression_failure": 0,
+            "selection_failure": 0,
+            "not_generated": 0
+          },
+          "expression_failure": {
+            "realized": 0,
+            "expression_failure": 0,
+            "selection_failure": 0,
+            "not_generated": 0
+          },
+          "selection_failure": {
+            "realized": 0,
+            "expression_failure": 0,
+            "selection_failure": 1,
+            "not_generated": 0
+          },
+          "not_generated": {
+            "realized": 0,
+            "expression_failure": 0,
+            "selection_failure": 0,
+            "not_generated": 0
+          }
+        },
+        "status_accuracy": 1.0,
+        "status_checked": 1,
+        "status_accuracy_strict": 1.0,
+        "status_decidable_checked": 1,
+        "status_undecidable_count": 0,
+        "status_undecidable_rate": 0.0,
+        "status_ambiguous_items": 0,
+        "status_agreement": true,
+        "status_agreement_strict": true,
+        "selection_expression_separability": 1.0,
+        "selection_expression_checked": 1,
+        "selection_expression_separability_adjudicated": null,
+        "selection_expression_adjudicated_checked": 0,
+        "decision_effect_agreement": 1.0,
+        "decision_effect_exact_agreement": 1.0,
+        "decision_effect_checked": 1,
+        "weak_effect_count": 0,
+        "weak_effects": [],
+        "quote_grounding": {
+          "checked": 1,
+          "exact": 1,
+          "whitespace": 0,
+          "empty": 0,
+          "ungrounded": 0,
+          "required": 1,
+          "required_grounded": 1,
+          "not_generated_with_quote": 0
+        },
+        "quote_grounding_rate": 1.0,
+        "violations": [],
+        "constraint_violation_candidates": [],
+        "constraint_violation_count": 0,
+        "introduced_in_synthesis": [],
+        "introduced_in_synthesis_count": 0,
+        "stance_misattribution": [],
+        "stance_misattribution_count": 0,
+        "gold_evidence_fragments": 1,
+        "gold_evidence_grounded": 1,
+        "gold_evidence_stats": {
+          "fragments": 1,
+          "exact": 1,
+          "punct": 0,
+          "ungrounded": 0
+        },
+        "gold_evidence_extraction_failed": 0,
+        "gold_evidence_skipped_not_generated": 0,
+        "gold_evidence_grounding_rate": 1.0,
+        "gold_legacy_effect_count": 0,
+        "gold_miss_total": 0,
+        "gold_miss_key_count": 0,
+        "expected_source_distribution": {
+          "unknown": 1
+        },
+        "expected_source_distribution_not_generated": {},
+        "trap_hits": [],
+        "out_of_frame_called_in_frame": [],
+        "frame_ambiguous": false,
+        "warnings": [
+          "frame_schema=non_conforming：initial_frame 不符合强制模板（四段 + 封闭性声明），本条目不得与 conforming 数据并列排名"
+        ],
+        "f1_with_constraint_violations_included": 1.0,
+        "f1_exclusion_delta": 0.0,
+        "tp_incl": 1,
+        "fp_incl": 0,
+        "fn_incl": 0,
+        "lexical_baseline_variants": {
+          "narrow|evidence_quote": {
+            "f1": 0.0,
+            "p": 0.0,
+            "r": 0.0,
+            "status_accuracy": 0.0,
+            "caliber": "status_only（方向集合与 in_frame 沿用抽取器输出，只把 status 换成关键词推断）",
+            "caliber_kind": "status_only",
+            "f1_comparable": false,
+            "headline_metric": "status_accuracy",
+            "tp": 0,
+            "fp": 0,
+            "fn": 1,
+            "status_correct": 0,
+            "status_checked": 1,
+            "lexicon": "narrow",
+            "corpus": "evidence_quote"
+          },
+          "narrow|full_trace": {
+            "f1": 0.0,
+            "p": 0.0,
+            "r": 0.0,
+            "status_accuracy": 0.0,
+            "caliber": "status_only（方向集合与 in_frame 沿用抽取器输出，只把 status 换成关键词推断）",
+            "caliber_kind": "status_only",
+            "f1_comparable": false,
+            "headline_metric": "status_accuracy",
+            "tp": 0,
+            "fp": 0,
+            "fn": 1,
+            "status_correct": 0,
+            "status_checked": 1,
+            "lexicon": "narrow",
+            "corpus": "full_trace"
+          },
+          "narrow|final_answer": {
+            "f1": 0.0,
+            "p": 0.0,
+            "r": 0.0,
+            "status_accuracy": 0.0,
+            "caliber": "status_only（方向集合与 in_frame 沿用抽取器输出，只把 status 换成关键词推断）",
+            "caliber_kind": "status_only",
+            "f1_comparable": false,
+            "headline_metric": "status_accuracy",
+            "tp": 0,
+            "fp": 0,
+            "fn": 1,
+            "status_correct": 0,
+            "status_checked": 1,
+            "lexicon": "narrow",
+            "corpus": "final_answer"
+          },
+          "wide|evidence_quote": {
+            "f1": 0.0,
+            "p": 0.0,
+            "r": 0.0,
+            "status_accuracy": 0.0,
+            "caliber": "status_only（方向集合与 in_frame 沿用抽取器输出，只把 status 换成关键词推断）",
+            "caliber_kind": "status_only",
+            "f1_comparable": false,
+            "headline_metric": "status_accuracy",
+            "tp": 0,
+            "fp": 0,
+            "fn": 1,
+            "status_correct": 0,
+            "status_checked": 1,
+            "lexicon": "wide",
+            "corpus": "evidence_quote"
+          },
+          "wide|full_trace": {
+            "f1": 0.0,
+            "p": 0.0,
+            "r": 0.0,
+            "status_accuracy": 0.0,
+            "caliber": "status_only（方向集合与 in_frame 沿用抽取器输出，只把 status 换成关键词推断）",
+            "caliber_kind": "status_only",
+            "f1_comparable": false,
+            "headline_metric": "status_accuracy",
+            "tp": 0,
+            "fp": 0,
+            "fn": 1,
+            "status_correct": 0,
+            "status_checked": 1,
+            "lexicon": "wide",
+            "corpus": "full_trace"
+          },
+          "wide|final_answer": {
+            "f1": 0.0,
+            "p": 0.0,
+            "r": 0.0,
+            "status_accuracy": 0.0,
+            "caliber": "status_only（方向集合与 in_frame 沿用抽取器输出，只把 status 换成关键词推断）",
+            "caliber_kind": "status_only",
+            "f1_comparable": false,
+            "headline_metric": "status_accuracy",
+            "tp": 0,
+            "fp": 0,
+            "fn": 1,
+            "status_correct": 0,
+            "status_checked": 1,
+            "lexicon": "wide",
+            "corpus": "final_answer"
+          }
+        },
+        "lexical_baseline_external": [
+          {
+            "name": "词法基线（主表口径，V1）",
+            "source": "baseline_main_caliber.json",
+            "caliber": "main_table（not_generated 不计入主表）",
+            "caliber_kind": "end_to_end",
+            "mode": "closed",
+            "f1": 0.5749,
+            "all_directions_caliber_f1": null,
+            "recommended_gate_f1": 0.6509,
+            "same_threshold_f1": 0.5509,
+            "same_threshold_params": {
+              "variant": "V1",
+              "oof_thr": 0.15,
+              "stance_thr": 0.3,
+              "match_thr": 0.34
+            },
+            "max_over_thresholds_f1": 0.5749,
+            "strong_pass_line_f1": 0.6749,
+            "gate_point_params": {
+              "variant": "V1",
+              "oof_thr": 0.15,
+              "stance_thr": 0.3,
+              "match_thr": 0.2
+            },
+            "sensitivity_curve": [
+              {
+                "match_thr": 0.2,
+                "baseline_f1": 0.5749,
+                "precision": 0.4248,
+                "recall": 0.8889
+              },
+              {
+                "match_thr": 0.25,
+                "baseline_f1": 0.5749,
+                "precision": 0.4248,
+                "recall": 0.8889
+              },
+              {
+                "match_thr": 0.3,
+                "baseline_f1": 0.5749,
+                "precision": 0.4248,
+                "recall": 0.8889
+              },
+              {
+                "match_thr": 0.34,
+                "baseline_f1": 0.5509,
+                "precision": 0.4071,
+                "recall": 0.8519
+              },
+              {
+                "match_thr": 0.35,
+                "baseline_f1": 0.5509,
+                "precision": 0.4071,
+                "recall": 0.8519
+              },
+              {
+                "match_thr": 0.4,
+                "baseline_f1": 0.515,
+                "precision": 0.3805,
+                "recall": 0.7963
+              },
+              {
+                "match_thr": 0.45,
+                "baseline_f1": 0.479,
+                "precision": 0.354,
+                "recall": 0.7407
+              },
+              {
+                "match_thr": 0.5,
+                "baseline_f1": 0.479,
+                "precision": 0.354,
+                "recall": 0.7407
+              },
+              {
+                "match_thr": 0.55,
+                "baseline_f1": 0.4431,
+                "precision": 0.3274,
+                "recall": 0.6852
+              },
+              {
+                "match_thr": 0.6,
+                "baseline_f1": 0.3537,
+                "precision": 0.2636,
+                "recall": 0.537
+              }
+            ],
+            "pool_caliber": "cleared",
+            "pool_caliber_ok": true,
+            "note": "**主表口径**，与抽取器的主表 F1 同口径 —— 门槛必须用这一份。原始扫描表的 F1 是含 miss detection 口径，不能用于门槛。⑳-b：门槛比较是**同点比较** —— 抽取器必须在取得该基准的**同一个匹配阈值**上被评分。"
+          }
+        ],
+        "lexical_baseline": {
+          "f1": 0.5749,
+          "p": null,
+          "r": null,
+          "status_accuracy": null,
+          "best_variant": "词法基线（主表口径，V1）",
+          "local_max_f1": 0.0,
+          "local_max_variant": "wide|full_trace",
+          "gate_basis_kind": "end_to_end",
+          "note": "门槛基准取 **end_to_end（抽取器无关）** 实现里的最高 F1 —— 门槛必须是一个固定基准，不能随抽取器的候选质量浮动，否则就是循环论证。本地 6 个变体是 status_only 口径（方向集合沿用抽取器输出），全表报告，作为「如果 status 只用关键词判会掉多少分」的诊断，不作门槛基准。"
+        },
+        "true_increment": {
+          "f1": 0.4251,
+          "status_accuracy": null,
+          "baseline_best_f1": 0.5749,
+          "baseline_best_variant": "词法基线（主表口径，V1）"
+        }
+      }
+    ],
+    "miss_bucket_reachability": {
+      "task": "main",
+      "external": "main",
+      "gold_author": "author_only",
+      "prp": "main"
+    }
+  }
+}

@@ -1,0 +1,299 @@
+{
+  "note": "词法基线在**评测器自己的打分路径**下的得分（scorer + matcher 均为 evaluator.py 的实现）。主门槛用**与抽取器同阈值**的数（完整协议一致）；强通过线用**基线调参后最优**的数（最努力的词法对手）。",
+  "caliber": "main_table（not_generated 不计入主表）",
+  "definition": "evaluator.score_prediction + evaluator 默认匹配器",
+  "source_gold": "/run/csi/mount-root/nas/eab0d61a99b6696edb3d2aff87b585e8/c-group/goldset/gold_v1.jsonl",
+  "default_match_thr": 0.34,
+  "at_default_threshold_f1": 0.5509,
+  "at_default_threshold_params": {
+    "variant": "V1",
+    "oof_thr": 0.15,
+    "stance_thr": 0.3,
+    "match_thr": 0.34
+  },
+  "recommended_gate_f1": 0.6509,
+  "max_f1": 0.5749,
+  "max_params": {
+    "variant": "V1",
+    "oof_thr": 0.15,
+    "stance_thr": 0.3,
+    "match_thr": 0.2
+  },
+  "strong_pass_line_f1": 0.6749,
+  "at_match_020_f1": 0.5749,
+  "precision": 0.4248,
+  "recall": 0.8889,
+  "status_accuracy": 0.7917,
+  "tp": 48,
+  "fp": 65,
+  "fn": 6,
+  "sensitivity_curve": [
+    {
+      "match_thr": 0.2,
+      "baseline_f1": 0.5749,
+      "precision": 0.4248,
+      "recall": 0.8889
+    },
+    {
+      "match_thr": 0.25,
+      "baseline_f1": 0.5749,
+      "precision": 0.4248,
+      "recall": 0.8889
+    },
+    {
+      "match_thr": 0.3,
+      "baseline_f1": 0.5749,
+      "precision": 0.4248,
+      "recall": 0.8889
+    },
+    {
+      "match_thr": 0.34,
+      "baseline_f1": 0.5509,
+      "precision": 0.4071,
+      "recall": 0.8519
+    },
+    {
+      "match_thr": 0.35,
+      "baseline_f1": 0.5509,
+      "precision": 0.4071,
+      "recall": 0.8519
+    },
+    {
+      "match_thr": 0.4,
+      "baseline_f1": 0.515,
+      "precision": 0.3805,
+      "recall": 0.7963
+    },
+    {
+      "match_thr": 0.45,
+      "baseline_f1": 0.479,
+      "precision": 0.354,
+      "recall": 0.7407
+    },
+    {
+      "match_thr": 0.5,
+      "baseline_f1": 0.479,
+      "precision": 0.354,
+      "recall": 0.7407
+    },
+    {
+      "match_thr": 0.55,
+      "baseline_f1": 0.4431,
+      "precision": 0.3274,
+      "recall": 0.6852
+    },
+    {
+      "match_thr": 0.6,
+      "baseline_f1": 0.3537,
+      "precision": 0.2636,
+      "recall": 0.537
+    }
+  ],
+  "number_classification": {
+    "0.9381": "脏（fp 逐条覆盖 bug）—— 作废",
+    "0.5397": "规范口径（评测器路径 @0.34）—— **主门槛基准**",
+    "0.5714": "规范口径（评测器路径 @0.20）—— 强通过线参照",
+    "0.5106": "干净但用 General 的 score() —— 不作门槛（跨口径），仍是重要的变体扫描数据源",
+    "note": "⑱-a 分类：0.9381 / 0.5397（旧 CSV 转换）/ 0.5714（旧 CSV 转换）三个作废；0.5106 干净但跨口径、不作门槛；**0.5397 @0.34 与 0.5714 @0.20 是评测器自己的路径 = 规范口径**。"
+  },
+  "top_rows": [
+    {
+      "variant": "V1",
+      "oof_thr": 0.15,
+      "stance_thr": 0.3,
+      "match_thr": 0.2,
+      "f1": 0.5749,
+      "precision": 0.4248,
+      "recall": 0.8889,
+      "status_accuracy": 0.7917,
+      "tp": 48,
+      "fp": 65,
+      "fn": 6
+    },
+    {
+      "variant": "V1",
+      "oof_thr": 0.15,
+      "stance_thr": 0.3,
+      "match_thr": 0.25,
+      "f1": 0.5749,
+      "precision": 0.4248,
+      "recall": 0.8889,
+      "status_accuracy": 0.7917,
+      "tp": 48,
+      "fp": 65,
+      "fn": 6
+    },
+    {
+      "variant": "V1",
+      "oof_thr": 0.15,
+      "stance_thr": 0.3,
+      "match_thr": 0.3,
+      "f1": 0.5749,
+      "precision": 0.4248,
+      "recall": 0.8889,
+      "status_accuracy": 0.7917,
+      "tp": 48,
+      "fp": 65,
+      "fn": 6
+    },
+    {
+      "variant": "V2",
+      "oof_thr": 0.15,
+      "stance_thr": 0.3,
+      "match_thr": 0.2,
+      "f1": 0.5749,
+      "precision": 0.4248,
+      "recall": 0.8889,
+      "status_accuracy": 0.7917,
+      "tp": 48,
+      "fp": 65,
+      "fn": 6
+    },
+    {
+      "variant": "V2",
+      "oof_thr": 0.15,
+      "stance_thr": 0.3,
+      "match_thr": 0.25,
+      "f1": 0.5749,
+      "precision": 0.4248,
+      "recall": 0.8889,
+      "status_accuracy": 0.7917,
+      "tp": 48,
+      "fp": 65,
+      "fn": 6
+    },
+    {
+      "variant": "V2",
+      "oof_thr": 0.15,
+      "stance_thr": 0.3,
+      "match_thr": 0.3,
+      "f1": 0.5749,
+      "precision": 0.4248,
+      "recall": 0.8889,
+      "status_accuracy": 0.7917,
+      "tp": 48,
+      "fp": 65,
+      "fn": 6
+    },
+    {
+      "variant": "V6",
+      "oof_thr": 0.15,
+      "stance_thr": 0.2,
+      "match_thr": 0.2,
+      "f1": 0.5749,
+      "precision": 0.4248,
+      "recall": 0.8889,
+      "status_accuracy": 0.5417,
+      "tp": 48,
+      "fp": 65,
+      "fn": 6
+    },
+    {
+      "variant": "V6",
+      "oof_thr": 0.15,
+      "stance_thr": 0.2,
+      "match_thr": 0.25,
+      "f1": 0.5749,
+      "precision": 0.4248,
+      "recall": 0.8889,
+      "status_accuracy": 0.5417,
+      "tp": 48,
+      "fp": 65,
+      "fn": 6
+    },
+    {
+      "variant": "V6",
+      "oof_thr": 0.15,
+      "stance_thr": 0.2,
+      "match_thr": 0.3,
+      "f1": 0.5749,
+      "precision": 0.4248,
+      "recall": 0.8889,
+      "status_accuracy": 0.5417,
+      "tp": 48,
+      "fp": 65,
+      "fn": 6
+    },
+    {
+      "variant": "V6",
+      "oof_thr": 0.15,
+      "stance_thr": 0.3,
+      "match_thr": 0.2,
+      "f1": 0.5749,
+      "precision": 0.4248,
+      "recall": 0.8889,
+      "status_accuracy": 0.4375,
+      "tp": 48,
+      "fp": 65,
+      "fn": 6
+    },
+    {
+      "variant": "V6",
+      "oof_thr": 0.15,
+      "stance_thr": 0.3,
+      "match_thr": 0.25,
+      "f1": 0.5749,
+      "precision": 0.4248,
+      "recall": 0.8889,
+      "status_accuracy": 0.4375,
+      "tp": 48,
+      "fp": 65,
+      "fn": 6
+    },
+    {
+      "variant": "V6",
+      "oof_thr": 0.15,
+      "stance_thr": 0.3,
+      "match_thr": 0.3,
+      "f1": 0.5749,
+      "precision": 0.4248,
+      "recall": 0.8889,
+      "status_accuracy": 0.4375,
+      "tp": 48,
+      "fp": 65,
+      "fn": 6
+    },
+    {
+      "variant": "V6",
+      "oof_thr": 0.15,
+      "stance_thr": 0.4,
+      "match_thr": 0.2,
+      "f1": 0.5749,
+      "precision": 0.4248,
+      "recall": 0.8889,
+      "status_accuracy": 0.3125,
+      "tp": 48,
+      "fp": 65,
+      "fn": 6
+    },
+    {
+      "variant": "V6",
+      "oof_thr": 0.15,
+      "stance_thr": 0.4,
+      "match_thr": 0.25,
+      "f1": 0.5749,
+      "precision": 0.4248,
+      "recall": 0.8889,
+      "status_accuracy": 0.3125,
+      "tp": 48,
+      "fp": 65,
+      "fn": 6
+    },
+    {
+      "variant": "V6",
+      "oof_thr": 0.15,
+      "stance_thr": 0.4,
+      "match_thr": 0.3,
+      "f1": 0.5749,
+      "precision": 0.4248,
+      "recall": 0.8889,
+      "status_accuracy": 0.3125,
+      "tp": 48,
+      "fp": 65,
+      "fn": 6
+    }
+  ],
+  "pool_caliber": "cleared",
+  "gate_point_match_thr": 0.25,
+  "gate_point_note": "⑳-b 同点比较：抽取器必须在 match_thr=0.25（基线 = 0.5749 的那一点）上被评分，再与 0.5749 比较。禁止在多阈值上取最优再比。"
+}

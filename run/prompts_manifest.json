@@ -1,0 +1,9 @@
+{
+ "gold_md5": "4769f49b39d95ec23ce9507501402749",
+ "gold_path": "/run/csi/mount-root/nas/eab0d61a99b6696edb3d2aff87b585e8/c-group/goldset/gold_v1.jsonl",
+ "n": 30,
+ "round_tag": "r4_after_⑭c收窄+⑬b修正+定向EF+候选集去遮蔽",
+ "rendered_at": "2026-10-18T18:05:49",
+ "outdir": "/run/csi/mount-root/nas/eab0d61a99b6696edb3d2aff87b585e8/c-group/run/prompts",
+ "system_txt_sha": "9ee6b647bf8675bf5c5e774f5d6dd2d434fabd04278867d91056bbe5cea00a32"
+}
